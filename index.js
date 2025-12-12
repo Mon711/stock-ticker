@@ -32,12 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const stockDisplayPriceIcon = document.getElementById("price-icon");
     const stockDisplayTime = document.getElementById("time");
 
+
+    const {name,sym, price, time} = stockData;
+
     // Display stock price and symbol
-    stockDisplayName.textContent = stockData.name;
-    stockDisplaySymbol.textContent = stockData.sym;
+    stockDisplayName.textContent = name;
+    stockDisplaySymbol.textContent = sym;
 
     // Set initial stock price and icon
-    stockDisplayPrice.textContent = stockData.price;
+    stockDisplayPrice.textContent = price;
     const icon = document.createElement("img");
     icon.src = "./svg/grey.svg";
     stockDisplayPriceIcon.appendChild(icon);
@@ -49,9 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentPrice = Number(stockDisplayPrice.textContent);
 
       // choose icon
-      let iconSrc = "./svg/grey.svg";
-      if (newPrice > currentPrice) iconSrc = "./svg/green.svg";
-      else if (newPrice < currentPrice) iconSrc = "./svg/red.svg";
+      let iconSrc = newPrice > currentPrice ? "./svg/green.svg" : newPrice < currentPrice ? "./svg/red.svg" : "./svg/grey.svg"
 
       // replace existing icon
       stockDisplayPriceIcon.innerHTML = "";
@@ -65,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(getPrice, 1500);
 
     // Set initial time
-    stockDisplayTime.textContent = stockData.time;
+    stockDisplayTime.textContent = time;
 
     // Set live clock
     setInterval(() => {
