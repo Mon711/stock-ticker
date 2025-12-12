@@ -32,8 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const stockDisplayPriceIcon = document.getElementById("price-icon");
     const stockDisplayTime = document.getElementById("time");
 
-
-    const {name,sym, price, time} = stockData;
+    const { name, sym, price, time } = stockData;
 
     // Display stock price and symbol
     stockDisplayName.textContent = name;
@@ -52,7 +51,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentPrice = Number(stockDisplayPrice.textContent);
 
       // choose icon
-      let iconSrc = newPrice > currentPrice ? "./svg/green.svg" : newPrice < currentPrice ? "./svg/red.svg" : "./svg/grey.svg"
+      let iconSrc =
+        newPrice > currentPrice
+          ? "./svg/green.svg"
+          : newPrice < currentPrice
+          ? "./svg/red.svg"
+          : "./svg/grey.svg";
 
       // replace existing icon
       stockDisplayPriceIcon.innerHTML = "";
@@ -70,9 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Set live clock
     setInterval(() => {
-      const { time:currentTime } = getStockData();
+      const { time: currentTime } = getStockData();
       stockDisplayTime.textContent = currentTime;
-    }, 1000)
+    }, 1000);
   }
 
   renderStockTicker(getStockData());
